@@ -11,7 +11,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/sent_messages_bubble"
             android:maxWidth="240dp"
             android:padding="16dp"
             android:id="@+id/sender_message_textview"

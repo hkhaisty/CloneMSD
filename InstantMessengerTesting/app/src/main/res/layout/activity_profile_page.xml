@@ -10,23 +10,35 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="250dp"
-            android:layout_height="250dp" tools:srcCompat="@tools:sample/avatars"
+            android:layout_height="250dp"
+            tools:srcCompat="@tools:sample/avatars"
             android:id="@+id/photodisplayProfile_circleview"
             app:layout_constraintStart_toStartOf="@+id/usernameDisplayProfile_textview"
-            app:layout_constraintEnd_toEndOf="@+id/usernameDisplayProfile_textview" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/usernameDisplayProfile_textview"/>
+            app:layout_constraintEnd_toEndOf="@+id/usernameDisplayProfile_textview"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/usernameDisplayProfile_textview"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/emaildisplayProfile_textview"/>
 
     <TextView
             android:text="Username"
             android:textStyle="bold"
+            android:fontFamily="@font/northen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:id="@+id/usernameDisplayProfile_textview"
-            android:textSize="36sp" android:layout_marginTop="40dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"/>
+            android:textSize="36sp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/photodisplayProfile_circleview"/>
     <TextView
             android:text="email@email.com"
             android:layout_width="wrap_content"
@@ -37,16 +49,24 @@
             app:layout_constraintEnd_toEndOf="@+id/photodisplayProfile_circleview"
             app:layout_constraintStart_toStartOf="@+id/photodisplayProfile_circleview"
             android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/photodisplayProfile_circleview" android:textSize="18sp"/>
+            app:layout_constraintTop_toBottomOf="@+id/photodisplayProfile_circleview"
+            android:textSize="18sp"
+            android:layout_marginBottom="208dp"
+            app:layout_constraintBottom_toTopOf="@+id/signoutProfile_button"/>
     <Button
             android:text="Sign out"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/signoutProfile_button" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/signoutProfile_button"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginBottom="24dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@drawable/rounded_button"
+            android:textColor="@color/cardview_light_background"
     />
 </android.support.constraint.ConstraintLayout>

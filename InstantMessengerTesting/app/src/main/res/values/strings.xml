@@ -3,5 +3,4 @@
     <string name="title_activity_email_search">EmailSearchActivity</string>
     <string name="title_activity_profile_page_acivity">ProfilePageAcivity</string>
     <string name="title_activity_searched_profile_page">SearchedProfilePageActivity</string>
-    <string name="title_activity_user_location">Map</string>
 </resources>

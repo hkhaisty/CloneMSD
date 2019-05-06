@@ -29,6 +29,7 @@ class RecentMessagesActivity : AppCompatActivity() {
         var logged_user: UserAccount? = null
     }
 
+
     private lateinit var drawerLayout: DrawerLayout
 
     val adapter = GroupAdapter<ViewHolder>()
@@ -81,7 +82,7 @@ class RecentMessagesActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
 
             //Navigation buttons
-            when(menuItem.itemId) {
+            when (menuItem.itemId) {
                 R.id.nav_search -> {
                     val intent = Intent(this, EmailSearchActivity::class.java)
                     Log.d("RecentMessagesActivity", "navigating...")
@@ -93,10 +94,19 @@ class RecentMessagesActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.nav_friends -> {
-                    val intent = Intent(this, NewMessageActivity::class.java)
+                    val intent = Intent(this, ChatLogActivity::class.java)
                     Log.d("RecentMessagesActivity", "navigating...")
                     startActivity(intent)
                 }
+
+                R.id.make_QR ->{
+                    val intent = Intent(this, QRGenerator::class.java)
+
+                    Log.d("RecentMessagesActivity", "navigating...")
+                    startActivity(intent)
+                }
+
+
                 R.id.nav_signout -> {
                     FirebaseAuth.getInstance().signOut()
 
@@ -115,16 +125,16 @@ class RecentMessagesActivity : AppCompatActivity() {
         val sender_id = FirebaseAuth.getInstance().uid
         val reference = FirebaseDatabase.getInstance().getReference("/last-message/$sender_id")
 
-        reference.addChildEventListener(object: ChildEventListener {
+        reference.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val message = p0.getValue(ChatLogActivity.ChatMessage::class.java)?: return
+                val message = p0.getValue(ChatLogActivity.ChatMessage::class.java) ?: return
 
                 recentmessage_map[p0.key!!] = message
                 refreshRecyclerView()
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                val message = p0.getValue(ChatLogActivity.ChatMessage::class.java)?: return
+                val message = p0.getValue(ChatLogActivity.ChatMessage::class.java) ?: return
 
                 recentmessage_map[p0.key!!] = message
                 refreshRecyclerView()
@@ -132,8 +142,10 @@ class RecentMessagesActivity : AppCompatActivity() {
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
             }
+
             override fun onChildRemoved(p0: DataSnapshot) {
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         })
@@ -150,7 +162,7 @@ class RecentMessagesActivity : AppCompatActivity() {
         val user_id = FirebaseAuth.getInstance().uid
         val reference = FirebaseDatabase.getInstance().getReference("/users/$user_id")
 
-        reference.addListenerForSingleValueEvent(object: ValueEventListener {
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("SetTextI18n")
             override fun onDataChange(p0: DataSnapshot) {
                 logged_user = p0.getValue(UserAccount::class.java)
@@ -168,7 +180,7 @@ class RecentMessagesActivity : AppCompatActivity() {
     private fun loginVerification() {
         val user_id = FirebaseAuth.getInstance().uid
 
-        if(user_id == null) {
+        if (user_id == null) {
             val intent = Intent(this, RegistrationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
@@ -176,22 +188,33 @@ class RecentMessagesActivity : AppCompatActivity() {
     }
 
     //Display navigational options
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.navigational_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.navigational_menu, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
+//
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
+        when (item?.itemId) {
             //Drawer Button
             android.R.id.home -> {
                 drawerLayout.openDrawer(GravityCompat.START)
+//<<<<<<< HEAD
+
+             }
+
+
+//            R.id.newmessage_menu -> {
+//                val intent = Intent(this, EmailSearchActivity::class.java)
+//                startActivity(intent)
+//            }
+//=======
             }
-        }
+//>>>>>>> 0fac2abf393c6ed75abd80cff329751e3a81de0d
+//        }
         return super.onOptionsItemSelected(item)
     }
 
-    class RecentMessageRow(val message: ChatLogActivity.ChatMessage): Item<ViewHolder>() {
+    class RecentMessageRow(val message: ChatLogActivity.ChatMessage) : Item<ViewHolder>() {
         var chat_partner: UserAccount? = null
 
         override fun getLayout(): Int {
@@ -200,22 +223,23 @@ class RecentMessagesActivity : AppCompatActivity() {
 
         override fun bind(viewHolder: ViewHolder, position: Int) {
             val receiver_id: String
-            if(message.sender_id == FirebaseAuth.getInstance().uid) {
+            if (message.sender_id == FirebaseAuth.getInstance().uid) {
                 receiver_id = message.receiver_id
-            }
-            else {
+            } else {
                 receiver_id = message.sender_id
             }
 
             val reference = FirebaseDatabase.getInstance().getReference("/users/$receiver_id")
 
-            reference.addListenerForSingleValueEvent(object: ValueEventListener {
+            reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(p0: DataSnapshot) {
                     chat_partner = p0.getValue(UserAccount::class.java)
 
                     viewHolder.itemView.usernamedisplay_textview.text = chat_partner?.username
-                    Picasso.get().load(chat_partner?.profileImageUrl).into(viewHolder.itemView.profileimagedisplay_imageview)
+                    Picasso.get().load(chat_partner?.profileImageUrl)
+                        .into(viewHolder.itemView.profileimagedisplay_imageview)
                 }
+
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
