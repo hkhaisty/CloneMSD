@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "33338253221",
+    "firebase_url": "https://instantmessengertest.firebaseio.com",
+    "project_id": "instantmessengertest",
+    "storage_bucket": "instantmessengertest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33338253221:android:aebef2b9dffc4c8e",
+        "android_client_info": {
+          "package_name": "com.example.mdinh.instantmessengertesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33338253221-bb7o7k65b8m21trmu7og84vm7ae67fpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHK8dcccj7ReK21cEhgChGcZTsJOLaSSw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
